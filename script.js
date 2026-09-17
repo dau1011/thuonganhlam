@@ -59,7 +59,7 @@ function startGatekeeper() {
 
 function evadeButton(btn) {
     evasionCount++;
-    if(evasionCount > 7) { showModal("Biết anh iu tui òi! Hihi", "🎀", startGame); return; }
+    if(evasionCount > 7) { showModal("Biết anh iu tui òi! Hihi", "🥰", startGame); return; }
     btn.style.position = "absolute";
     btn.style.top = Math.random() * 80 + "%";
     btn.style.left = Math.random() * 80 + "%";
@@ -73,7 +73,7 @@ function handleGatekeeperNo() {
 function goMenu() { showScreen("screen-menu"); }
 function startGame() { 
     lives = 3; currentQuestion = 0; updateLives(); 
-    showModal("Luật chơi: Anh có 3 mạng. Trả lời sai mất 1 mạng. Hết mạng chơi lại từ đầu!Hehehehe", "📜", firstQ); 
+    showModal("Luật chơi: Anh có 3 mạng. Trả lời sai mất 1 mạng. Hết mạng chơi lại từ đầu!", "📜", firstQ); 
     showScreen("screen-quiz");
 }
 function firstQ() {} function nextQ() {}  
@@ -99,7 +99,7 @@ function loadQuestion() {
         optionsHTML += `<button class="btn" onclick="showInputC()">Khác</button>`;
         optionsHTML += `<div id="input-c-div" style="display:none; margin-top:10px;"><input type="text" id="ans-text-c" placeholder="Ghi rõ ra..."><button class="btn green" onclick="submitTextC()">Gửi</button></div>`;
     } else if (q.type === 'text') {
-        optionsHTML += `<input type="text" id="ans-text" placeholder="Trả lời thiệt lòng đi đó..."><button class="btn" onclick="submitText()">Gửi</button>`;
+        optionsHTML += `<input type="text" id="ans-text" placeholder="Phại nói thiệt lòng đó..."><button class="btn" onclick="submitText()">Gửi</button>`;
     } else if (q.type === 'info') {
         optionsHTML += `<button class="btn green" onclick="finishLevel1()">Hoàn thành Ải 1!</button>`;
     }
@@ -107,7 +107,7 @@ function loadQuestion() {
 }
 
 function finishLevel1() {
-    unlockLevel2(); 
+    unlockNextLevels(); 
     showModal("Hoàn thành thử thách! Khá khen cho anh đó!", "🥳", goMenu);
 }
 
@@ -119,7 +119,7 @@ function checkChoice(idx) {
 function wrongAnswer(answeredText = "") {
     if(answeredText) logAnswer(questions[currentQuestion].q, answeredText);
     event.target.classList.add("red"); shakeScreen(); lives--; updateLives();
-    if(lives <= 0) { showModal("HẾT MẠNG!!! QUAY LẠI TỪ ĐẦU NHA!!!", "☠️", goMenu); } 
+    if(lives <= 0) { showModal("HẾT MẠNG!!! QUAY LẠI TỪ ĐẦU LIỀN!!!", "☠️", goMenu); } 
     else { showModal(questions[currentQuestion].popF, "😡"); }
 }
 
@@ -135,33 +135,39 @@ function submitText() {
 
 function logAnswer(question, answer) { historyLog.push(`<b>${question}</b><br>Hoàng đáp: <span style="color:#0288d1">${answer}</span>`); }
 function showHistory() {
-    let html = (historyLog.length === 0) ? "<p>Chưa có dữ liệu nào bị bắt quả tang...</p>" : historyLog.map(h => `<div class="history-item">${h}</div>`).join("");
+    let html = (historyLog.length === 0) ? "<p>Chưa có dữ liệu nào bị bắt quả tang...</p>" : historyLog.map(h => `<div class="history-item" style="padding:10px;">${h}</div>`).join("");
     document.getElementById("history-content").innerHTML = html; document.getElementById("history-modal").style.display = "flex";
 }
 function closeHistory() { document.getElementById("history-modal").style.display = "none"; }
 
 
-// --- LOGIC ẢI 2: MÁY GẮP THÚ ---
-let level2Unlocked = false; 
+// --- LOGIC MỞ KHÓA ẢI 2 VÀ ẢI 3 ---
+let levelsUnlocked = false; 
 
-function unlockLevel2() {
-    level2Unlocked = true;
-    document.getElementById("level-2-icon").style.filter = "none";
-    document.getElementById("level-2-icon").style.opacity = "1";
-    document.getElementById("level-2-icon").style.cursor = "pointer";
-    document.getElementById("level-2-icon").classList.add("pulse");
+function unlockNextLevels() {
+    levelsUnlocked = true;
+    
+    // Mở ải 2
+    let l2 = document.getElementById("level-2-icon");
+    l2.style.filter = "none"; l2.style.opacity = "1"; l2.style.cursor = "pointer"; l2.classList.add("pulse");
     document.getElementById("level-2-text").innerText = "Ải 2: Gắp quà!";
     document.getElementById("level-2-text").style.color = "#0277bd";
+    
+    // Mở ải 3
+    let l3 = document.getElementById("level-3-icon");
+    l3.style.filter = "none"; l3.style.opacity = "1"; l3.style.cursor = "pointer"; l3.classList.add("pulse");
+    document.getElementById("level-3-text").innerText = "Ải 3: Mở thư!";
+    document.getElementById("level-3-text").style.color = "#0277bd";
 }
 
+// --- LOGIC ẢI 2: MÁY GẮP THÚ ---
 function startLevel2() {
-    if(!level2Unlocked) { showModal("Phải qua Ải 1 mới được gắp quà nhaaa!", "🔒", goMenu); return; }
+    if(!levelsUnlocked) { showModal("Phải qua Ải 1 mới được gắp quà nhaaa!", "🔒", goMenu); return; }
     showScreen("screen-level2");
 }
 
-// Data của máy gắp (20 Phần Thưởng)
 const clawPrizes = [
-   { file: "1.png", text: "thương anh lắm!" },
+    { file: "1.png", text: "thương anh lắm!" },
     { file: "2.png", text: "may mắn cả ngày nhaa bạn ơii" },
     { file: "3.png", text: "yêu anh" },
     { file: "4.png", text: "mỗi ngày đều mong anh hạnh phúc" },
@@ -185,12 +191,7 @@ const clawPrizes = [
 
 function triggerFireworks() {
     if (typeof confetti === "function") {
-        confetti({
-            particleCount: 150,
-            spread: 80,
-            origin: { y: 0.6 },
-            colors: ['#ffb7b2', '#e2f0cb', '#b5ead7', '#c7ceea', '#ff9aa2'] 
-        });
+        confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 }, colors: ['#ffb7b2', '#e2f0cb', '#b5ead7', '#c7ceea', '#ff9aa2'] });
     }
 }
 
@@ -200,19 +201,16 @@ function playClaw() {
     btn.disabled = true;
     btn.innerText = "Đang gắp...";
 
-    // Càng hạ xuống sát đáy
-    claw.style.top = "150px";
+    // Càng hạ xuống
+    claw.style.top = "110px";
 
     setTimeout(() => {
         // Càng kéo lên
         claw.style.top = "-15px";
 
         setTimeout(() => {
-            // Random gắp 1 trong 20 ảnh
             let prize = clawPrizes[Math.floor(Math.random() * clawPrizes.length)];
             showModal(prize.text, prize.file, resetClaw);
-            
-            // Bắn pháo hoa
             triggerFireworks();
         }, 1000); 
 
@@ -223,4 +221,46 @@ function resetClaw() {
     const btn = document.getElementById("btn-gap");
     btn.disabled = false;
     btn.innerText = "Gắp ngay!";
+}
+
+// --- LOGIC ẢI 3: GỬI THƯ ---
+function startLevel3() {
+    if(!levelsUnlocked) { showModal("Phải qua Ải 1 mới được mở thư nhaaa!", "🔒", goMenu); return; }
+    showScreen("screen-level3");
+}
+
+function openLetter() {
+    document.getElementById("envelope-container").innerText = "💌";
+    document.getElementById("envelope-container").style.fontSize = "70px"; 
+    document.getElementById("envelope-container").classList.remove("pulse");
+    document.getElementById("envelope-container").onclick = null; // Tắt click mở phong bì
+    
+    // Hiển thị nội dung thư
+    document.getElementById("letter-content").style.display = "block";
+    document.getElementById("btn-send-letter").style.display = "inline-block";
+    
+    // Bắn pháo hoa ăn mừng xíu
+    triggerFireworks();
+}
+
+function sendReply() {
+    let reply = document.getElementById("hoang-reply").value;
+    if(!reply.trim()) {
+        showModal("Cấm gửi giấy trắng nha!(GỬI CŨNG ĐƯỢC EM ĐE DỌA DEMO THOI)", "😡");
+        return;
+    }
+    
+    // Lưu thư trả lời vào lịch sử bí mật
+    historyLog.push(`<b>💌 THƯ PHẢN HỒI TỪ HOÀNG:</b><br><span style="color:#d84315; font-style: italic;">"${reply}"</span>`);
+    
+    showModal("Đã nhận được tâm thư của anh! Yêu anh! 💙", "🥰", goMenu);
+    
+    // Ẩn lá thư đi và khôi phục lại phong bì như cũ (nếu muốn đọc lại)
+    document.getElementById("hoang-reply").value = "";
+    document.getElementById("letter-content").style.display = "none";
+    document.getElementById("btn-send-letter").style.display = "none";
+    document.getElementById("envelope-container").innerText = "✉️";
+    document.getElementById("envelope-container").style.fontSize = "100px";
+    document.getElementById("envelope-container").classList.add("pulse");
+    document.getElementById("envelope-container").onclick = openLetter;
 }
