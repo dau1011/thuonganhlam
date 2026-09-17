@@ -6,7 +6,6 @@
     <title>Happy 2-Month Anniversary 💙</title>
     <link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <!-- Thư viện tạo hiệu ứng pháo hoa -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 </head>
 <body>
@@ -22,8 +21,8 @@
                 <!-- ẢI 1 -->
                 <div>
                     <div class="level-icon pulse" id="level-1-icon" onclick="startGatekeeper()">
-                        <!-- Đã bỏ style inline để CSS tự thu nhỏ lọt vào trái tim -->
-                        <div class="center-emoji" id="secret-trigger">🍓</div>
+                        <!-- Thu nhỏ và dùng ID mới để xích xuống chính giữa -->
+                        <div class="center-emoji-small" id="secret-trigger">🍓</div>
                     </div>
                     <p style="color: #0277bd; font-weight: bold; font-size: 14px; margin-top: 5px;">Ải 1: Trả lời sai là dỗi!!!</p>
                 </div>
@@ -31,8 +30,7 @@
                 <!-- ẢI 2 -->
                 <div>
                     <div class="level-icon" id="level-2-icon" style="filter: grayscale(100%); opacity: 0.5; cursor: not-allowed; margin-top: 30px;" onclick="startLevel2()">
-                        <!-- Đã bỏ style inline để CSS tự thu nhỏ lọt vào trái tim -->
-                        <div class="center-emoji">🎰</div>
+                        <div class="center-emoji-small" style="font-size: 28px;">🎰</div>
                     </div>
                     <p style="color: #999; font-weight: bold; font-size: 14px; margin-top: 5px;" id="level-2-text">Ải 2: (Vượt Ải 1 mở)</p>
                 </div>
@@ -55,24 +53,22 @@
 
         <!-- MÀN HÌNH MÁY GẮP THÚ (ẢI 2) -->
         <div id="screen-level2" class="screen">
-            <div class="question-text">Máy Gắp Kỷ Niệm 🎰</div>
+            <!-- Đổi tên -->
+            <div class="question-text">Gửi Nhiều Điềuu 🎰</div>
             <p style="margin-bottom: 15px; font-size: 14px; color: #0288d1;">Xem nhân phẩm anh nay gắp được gì nè!</p>
             
             <div class="claw-machine">
                 <div class="claw" id="claw">🦾</div>
-                <!-- Hồ chứa sticker: Mình để 2 bộ từ 1 đến 20 để tạo thành đống dày -->
+                <!-- Nhân lên 60 ảnh để dâng cao tới mức gạch đỏ -->
                 <div class="stickers-pile">
-                    <!-- BỘ 1 -->
-                    <img src="1.png" class="sticker-img"><img src="2.png" class="sticker-img"><img src="3.png" class="sticker-img"><img src="4.png" class="sticker-img"><img src="5.png" class="sticker-img">
-                    <img src="6.png" class="sticker-img"><img src="7.png" class="sticker-img"><img src="8.png" class="sticker-img"><img src="9.png" class="sticker-img"><img src="10.png" class="sticker-img">
-                    <img src="11.png" class="sticker-img"><img src="12.png" class="sticker-img"><img src="13.png" class="sticker-img"><img src="14.png" class="sticker-img"><img src="15.png" class="sticker-img">
-                    <img src="16.png" class="sticker-img"><img src="17.png" class="sticker-img"><img src="18.png" class="sticker-img"><img src="19.png" class="sticker-img"><img src="20.png" class="sticker-img">
+                    <img src="1.png" class="sticker-img"><img src="2.png" class="sticker-img"><img src="3.png" class="sticker-img"><img src="4.png" class="sticker-img"><img src="5.png" class="sticker-img"><img src="6.png" class="sticker-img"><img src="7.png" class="sticker-img"><img src="8.png" class="sticker-img"><img src="9.png" class="sticker-img"><img src="10.png" class="sticker-img">
+                    <img src="11.png" class="sticker-img"><img src="12.png" class="sticker-img"><img src="13.png" class="sticker-img"><img src="14.png" class="sticker-img"><img src="15.png" class="sticker-img"><img src="16.png" class="sticker-img"><img src="17.png" class="sticker-img"><img src="18.png" class="sticker-img"><img src="19.png" class="sticker-img"><img src="20.png" class="sticker-img">
                     
-                    <!-- BỘ 2 (Lộn xộn để lấp đầy lồng kính) -->
-                    <img src="5.png" class="sticker-img"><img src="12.png" class="sticker-img"><img src="3.png" class="sticker-img"><img src="18.png" class="sticker-img"><img src="9.png" class="sticker-img">
-                    <img src="1.png" class="sticker-img"><img src="14.png" class="sticker-img"><img src="8.png" class="sticker-img"><img src="19.png" class="sticker-img"><img src="4.png" class="sticker-img">
-                    <img src="16.png" class="sticker-img"><img src="7.png" class="sticker-img"><img src="11.png" class="sticker-img"><img src="20.png" class="sticker-img"><img src="2.png" class="sticker-img">
-                    <img src="15.png" class="sticker-img"><img src="6.png" class="sticker-img"><img src="17.png" class="sticker-img"><img src="10.png" class="sticker-img"><img src="13.png" class="sticker-img">
+                    <img src="5.png" class="sticker-img"><img src="12.png" class="sticker-img"><img src="3.png" class="sticker-img"><img src="18.png" class="sticker-img"><img src="9.png" class="sticker-img"><img src="1.png" class="sticker-img"><img src="14.png" class="sticker-img"><img src="8.png" class="sticker-img"><img src="19.png" class="sticker-img"><img src="4.png" class="sticker-img">
+                    <img src="16.png" class="sticker-img"><img src="7.png" class="sticker-img"><img src="11.png" class="sticker-img"><img src="20.png" class="sticker-img"><img src="2.png" class="sticker-img"><img src="15.png" class="sticker-img"><img src="6.png" class="sticker-img"><img src="17.png" class="sticker-img"><img src="10.png" class="sticker-img"><img src="13.png" class="sticker-img">
+                    
+                    <img src="2.png" class="sticker-img"><img src="19.png" class="sticker-img"><img src="8.png" class="sticker-img"><img src="14.png" class="sticker-img"><img src="5.png" class="sticker-img"><img src="17.png" class="sticker-img"><img src="11.png" class="sticker-img"><img src="1.png" class="sticker-img"><img src="6.png" class="sticker-img"><img src="20.png" class="sticker-img">
+                    <img src="9.png" class="sticker-img"><img src="12.png" class="sticker-img"><img src="15.png" class="sticker-img"><img src="3.png" class="sticker-img"><img src="10.png" class="sticker-img"><img src="18.png" class="sticker-img"><img src="4.png" class="sticker-img"><img src="7.png" class="sticker-img"><img src="13.png" class="sticker-img"><img src="16.png" class="sticker-img">
                 </div>
             </div>
             
@@ -87,7 +83,7 @@
         <div class="modal-content">
             <div class="modal-emoji" id="popup-emoji">😡</div>
             <div class="modal-text" id="popup-text"></div>
-            <button class="btn" onclick="closePopup()">Tiếp theo ➡️</button>
+            <button class="btn" onclick="closePopup()">Tiếp theo </button>
         </div>
     </div>
 
