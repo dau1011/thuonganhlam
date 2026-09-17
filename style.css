@@ -32,17 +32,19 @@ body {
     transition: 0.3s;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 88 C50 88 10 60 10 32 C10 12 35 12 50 32 C65 12 90 12 90 32 C90 60 50 88 50 88 Z' fill='%23e1f5fe' stroke='%234fc3f7' stroke-width='4' stroke-linejoin='round'/%3E%3C/svg%3E");
     background-size: contain; background-repeat: no-repeat; background-position: center;
-    padding-bottom: 12px; /* Đẩy nhẹ item lên phần bầu bĩnh nhất của trái tim */
+    /* Đẩy item lên 15px để nó nằm chính xác ở giữa phần bầu của trái tim */
+    padding-bottom: 15px; 
 }
 .level-icon:hover { 
     transform: scale(1.05); 
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 88 C50 88 10 60 10 32 C10 12 35 12 50 32 C65 12 90 12 90 32 C90 60 50 88 50 88 Z' fill='%23b3e5fc' stroke='%234fc3f7' stroke-width='4' stroke-linejoin='round'/%3E%3C/svg%3E");
 }
 
-/* Chỉnh Dâu Tây thu nhỏ và căn chính giữa */
-.strawberry { 
-    font-size: 45px; 
+/* Thu nhỏ lại còn 35px để chắc chắn lọt thỏm trong viền xanh */
+.center-emoji { 
+    font-size: 35px; 
     z-index: 10; 
+    line-height: 1;
 }
 
 .question-text { font-size: 20px; margin-bottom: 20px; color: #01579b; font-weight: bold; }
@@ -84,7 +86,7 @@ input[type="text"] {
 }
 .stickers-pile {
     position: absolute;
-    bottom: -5px;
+    bottom: -10px; /* Ép sát đáy lồng */
     left: 0;
     width: 100%;
     display: flex;
@@ -95,10 +97,10 @@ input[type="text"] {
     z-index: 10;
 }
 .sticker-img {
-    width: 50px; 
-    height: 50px;
+    width: 45px; /* Thu nhỏ chút nữa để nhét đủ 40 hình */
+    height: 45px;
     object-fit: contain;
-    margin: -10px -8px; /* Lấp đầy lộn xộn */
+    margin: -15px -10px; /* Ép sát nhau thành 1 khối lộn xộn */
     transition: 0.3s;
 }
 /* Xoay ngẫu nhiên */
