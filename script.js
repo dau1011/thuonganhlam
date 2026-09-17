@@ -188,7 +188,7 @@ function loadQuestion() {
             optionsHTML += `<button class="btn" onclick='checkChoice(${idx}, ${optData}, this)'>${opt.t}</button>`; 
         });
     } else if (q.type === 'text' || q.type === 'text_custom') {
-        optionsHTML += `<input type="text" id="ans-text" placeholder="HEHEHEHEH...">
+        optionsHTML += `<input type="text" id="ans-text" placeholder="...........">
                         <button class="btn green" onclick="submitText()">Gửi đi!</button>`;
     } else if (q.type === 'final') { // Câu 16
         triggerFireworks();
