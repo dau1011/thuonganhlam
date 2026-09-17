@@ -59,7 +59,7 @@ function startGatekeeper() {
 
 function evadeButton(btn) {
     evasionCount++;
-    if(evasionCount > 7) { showModal("Biết anh iu tui òi! Hihi", "🥰", startGame); return; }
+    if(evasionCount > 7) { showModal("Biết anh iu tui òi! Hihi", "🎀", startGame); return; }
     btn.style.position = "absolute";
     btn.style.top = Math.random() * 80 + "%";
     btn.style.left = Math.random() * 80 + "%";
@@ -73,7 +73,7 @@ function handleGatekeeperNo() {
 function goMenu() { showScreen("screen-menu"); }
 function startGame() { 
     lives = 3; currentQuestion = 0; updateLives(); 
-    showModal("Luật chơi: Anh có 3 mạng. Trả lời sai mất 1 mạng. Hết mạng chơi lại từ đầu!", "📜", firstQ); 
+    showModal("Luật chơi: Anh có 3 mạng. Trả lời sai mất 1 mạng. Hết mạng chơi lại từ đầu!Hehehehe", "📜", firstQ); 
     showScreen("screen-quiz");
 }
 function firstQ() {} function nextQ() {}  
@@ -99,7 +99,7 @@ function loadQuestion() {
         optionsHTML += `<button class="btn" onclick="showInputC()">Khác</button>`;
         optionsHTML += `<div id="input-c-div" style="display:none; margin-top:10px;"><input type="text" id="ans-text-c" placeholder="Ghi rõ ra..."><button class="btn green" onclick="submitTextC()">Gửi</button></div>`;
     } else if (q.type === 'text') {
-        optionsHTML += `<input type="text" id="ans-text" placeholder="Trình bày đi..."><button class="btn" onclick="submitText()">Gửi</button>`;
+        optionsHTML += `<input type="text" id="ans-text" placeholder="Trả lời thiệt lòng đi đó..."><button class="btn" onclick="submitText()">Gửi</button>`;
     } else if (q.type === 'info') {
         optionsHTML += `<button class="btn green" onclick="finishLevel1()">Hoàn thành Ải 1!</button>`;
     }
@@ -119,7 +119,7 @@ function checkChoice(idx) {
 function wrongAnswer(answeredText = "") {
     if(answeredText) logAnswer(questions[currentQuestion].q, answeredText);
     event.target.classList.add("red"); shakeScreen(); lives--; updateLives();
-    if(lives <= 0) { showModal("HẾT MẠNG!!! QUAY LẠI TỪ ĐẦU NHA CON TRAI!", "☠️", goMenu); } 
+    if(lives <= 0) { showModal("HẾT MẠNG!!! QUAY LẠI TỪ ĐẦU NHA!!!", "☠️", goMenu); } 
     else { showModal(questions[currentQuestion].popF, "😡"); }
 }
 
@@ -159,8 +159,9 @@ function startLevel2() {
     showScreen("screen-level2");
 }
 
+// Data của máy gắp (20 Phần Thưởng)
 const clawPrizes = [
-    { file: "1.png", text: "thương anh lắm!" },
+   { file: "1.png", text: "thương anh lắm!" },
     { file: "2.png", text: "may mắn cả ngày nhaa bạn ơii" },
     { file: "3.png", text: "yêu anh" },
     { file: "4.png", text: "mỗi ngày đều mong anh hạnh phúc" },
@@ -169,7 +170,17 @@ const clawPrizes = [
     { file: "7.png", text: "Nhớ em hông? 😡" },
     { file: "8.png", text: "Em ở đây với anh mà!" },
     { file: "9.png", text: "Mất lượt! Gắp lại đi lêu lêu!" },
-    { file: "10.png", text: "Anh là số 1!" }
+    { file: "10.png", text: "Anh là số 1!" },
+    { file: "11.png", text: "Ai làm anh buồn thì chan người đó luôn!!!" },
+    { file: "12.png", text: "Em thương anh nhiều lắm" },
+    { file: "13.png", text: "Anh ngoan nhất!" },
+    { file: "14.png", text: "Yêu bản thân nhiều lên rồi mới được thương em" },
+    { file: "15.png", text: "Hôm nay anh đẹp trai lắm!" },
+    { file: "16.png", text: "Meo Meo" },
+    { file: "17.png", text: "Nghỉ ngơi nhiều 1 chút!" },
+    { file: "18.png", text: "Chưa nhớ tui hả???" },
+    { file: "19.png", text: "Hình như nay chưa có người nói yêu Dâu hay sao í" },
+    { file: "20.png", text: "Đừng tủi thân 1 mình nha (em lo lắm) " }
 ];
 
 function triggerFireworks() {
@@ -197,7 +208,7 @@ function playClaw() {
         claw.style.top = "-15px";
 
         setTimeout(() => {
-            // Random gắp 1 trong 10 ảnh
+            // Random gắp 1 trong 20 ảnh
             let prize = clawPrizes[Math.floor(Math.random() * clawPrizes.length)];
             showModal(prize.text, prize.file, resetClaw);
             
