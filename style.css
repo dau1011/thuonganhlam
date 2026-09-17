@@ -22,15 +22,33 @@ body {
 }
 .title { font-size: 24px; color: #0277bd; margin-bottom: 30px; }
 .pulse { display: inline-block; animation: heartbeat 1.5s infinite; }
+
+/* Chỉnh sửa Icon thành hình trái tim */
 .level-icon {
-    width: 120px; height: 120px; border-radius: 50%;
-    border: 3px solid #4fc3f7; margin: 0 auto 10px;
+    width: 140px; 
+    height: 120px; 
+    margin: 0 auto 10px;
     display: flex; flex-direction: column; justify-content: center; align-items: center;
     font-size: 40px; cursor: pointer; position: relative;
-    background: #e1f5fe; transition: 0.3s;
+    transition: 0.3s;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 88 C50 88 10 60 10 32 C10 12 35 12 50 32 C65 12 90 12 90 32 C90 60 50 88 50 88 Z' fill='%23e1f5fe' stroke='%234fc3f7' stroke-width='4' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding-bottom: 20px; 
 }
-.level-icon:hover { background: #b3e5fc; transform: scale(1.05); }
-.strawberry { position: absolute; bottom: 10px; font-size: 30px; z-index: 10;}
+
+.level-icon:hover { 
+    transform: scale(1.05); 
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 88 C50 88 10 60 10 32 C10 12 35 12 50 32 C65 12 90 12 90 32 C90 60 50 88 50 88 Z' fill='%23b3e5fc' stroke='%234fc3f7' stroke-width='4' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+.strawberry { 
+    position: absolute; 
+    bottom: 22px; 
+    font-size: 30px; 
+    z-index: 10;
+}
 
 /* Gatekeeper & Quiz */
 .question-text { font-size: 20px; margin-bottom: 20px; color: #01579b; font-weight: bold; }
@@ -49,6 +67,14 @@ input[type="text"] {
 #btn-yes { position: relative; transition: 0.1s; }
 .lives { font-size: 24px; margin-bottom: 15px; color: #e53935; }
 
+/* Thu nhỏ nút Có/Không ở màn hình bảo vệ */
+#screen-gatekeeper .btn {
+    width: auto;
+    min-width: 120px;
+    display: inline-block;
+    margin: 10px;
+}
+
 /* Animations */
 @keyframes heartbeat {
     0% { transform: scale(1); } 25% { transform: scale(1.2); }
@@ -66,8 +92,11 @@ input[type="text"] {
     background: rgba(0,0,0,0.5); justify-content: center; align-items: center; z-index: 100;
 }
 .modal-content {
-    background: white; padding: 25px; border-radius: 20px; width: 80%; max-width: 350px;
+    background: white; border-radius: 20px; 
     text-align: center; border: 4px solid #0288d1;
+    width: 85%; 
+    max-width: 320px;
+    padding: 20px;
 }
 .modal-text { font-size: 18px; margin-bottom: 15px; font-weight: bold; color: #d32f2f; }
 .modal-emoji { font-size: 50px; margin-bottom: 10px; }
