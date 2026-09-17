@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy 2-Month Anniversary 💙</title>
+    <title>Happy 3-Month Anniversary 💙</title>
     <link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <!-- Thư viện tạo hiệu ứng pháo hoa -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 </head>
 <body>
@@ -14,17 +15,16 @@
         
         <!-- MÀN HÌNH MENU -->
         <div id="screen-menu" class="screen active">
-            <div class="pill-btn">Happy 2-month Anniversary</div>
+            <div class="pill-btn">Happy 3-month Anniversary</div>
             <h1 class="title">Thử thách của anh <span class="pulse">💙</span></h1>
             
-            <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+            <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
                 <!-- ẢI 1 -->
                 <div>
                     <div class="level-icon pulse" id="level-1-icon" onclick="startGatekeeper()">
-                        <!-- Thu nhỏ và dùng ID mới để xích xuống chính giữa -->
                         <div class="center-emoji-small" id="secret-trigger">🍓</div>
                     </div>
-                    <p style="color: #0277bd; font-weight: bold; font-size: 14px; margin-top: 5px;">Ải 1: Trả lời sai là dỗi!!!</p>
+                    <p style="color: #0277bd; font-weight: bold; font-size: 14px; margin-top: 5px;">Ải 1</p>
                 </div>
                 
                 <!-- ẢI 2 -->
@@ -32,7 +32,15 @@
                     <div class="level-icon" id="level-2-icon" style="filter: grayscale(100%); opacity: 0.5; cursor: not-allowed; margin-top: 30px;" onclick="startLevel2()">
                         <div class="center-emoji-small" style="font-size: 28px;">🎰</div>
                     </div>
-                    <p style="color: #999; font-weight: bold; font-size: 14px; margin-top: 5px;" id="level-2-text">Ải 2: (Vượt Ải 1 mở)</p>
+                    <p style="color: #999; font-weight: bold; font-size: 14px; margin-top: 5px;" id="level-2-text">Ải 2 (Khóa)</p>
+                </div>
+
+                <!-- ẢI 3 -->
+                <div>
+                    <div class="level-icon" id="level-3-icon" style="filter: grayscale(100%); opacity: 0.5; cursor: not-allowed;" onclick="startLevel3()">
+                        <div class="center-emoji-small" style="font-size: 28px;">💌</div>
+                    </div>
+                    <p style="color: #999; font-weight: bold; font-size: 14px; margin-top: 5px;" id="level-3-text">Ải 3 (Khóa)</p>
                 </div>
             </div>
         </div>
@@ -53,13 +61,12 @@
 
         <!-- MÀN HÌNH MÁY GẮP THÚ (ẢI 2) -->
         <div id="screen-level2" class="screen">
-            <!-- Đổi tên -->
             <div class="question-text">Gửi Nhiều Điềuu 🎰</div>
             <p style="margin-bottom: 15px; font-size: 14px; color: #0288d1;">Xem nhân phẩm anh nay gắp được gì nè!</p>
             
             <div class="claw-machine">
                 <div class="claw" id="claw">🦾</div>
-                <!-- Nhân lên 60 ảnh để dâng cao tới mức gạch đỏ -->
+                <!-- 40 Ảnh lấp đầy đáy lồng kính -->
                 <div class="stickers-pile">
                     <img src="1.png" class="sticker-img"><img src="2.png" class="sticker-img"><img src="3.png" class="sticker-img"><img src="4.png" class="sticker-img"><img src="5.png" class="sticker-img"><img src="6.png" class="sticker-img"><img src="7.png" class="sticker-img"><img src="8.png" class="sticker-img"><img src="9.png" class="sticker-img"><img src="10.png" class="sticker-img">
                     <img src="11.png" class="sticker-img"><img src="12.png" class="sticker-img"><img src="13.png" class="sticker-img"><img src="14.png" class="sticker-img"><img src="15.png" class="sticker-img"><img src="16.png" class="sticker-img"><img src="17.png" class="sticker-img"><img src="18.png" class="sticker-img"><img src="19.png" class="sticker-img"><img src="20.png" class="sticker-img">
@@ -73,6 +80,33 @@
             </div>
             
             <button class="btn green" id="btn-gap" onclick="playClaw()">Gắp ngay!</button>
+            <button class="btn" onclick="goMenu()">Quay lại Menu</button>
+        </div>
+
+        <!-- MÀN HÌNH GỬI THÚ (ẢI 3) -->
+        <div id="screen-level3" class="screen">
+            <div class="question-text">Hòm Thư Tình Yêu 💌</div>
+            <p style="margin-bottom: 15px; font-size: 14px; color: #0288d1;">Có một lá thư bí mật chờ anh bóc tem!</p>
+            
+            <div id="envelope-container" onclick="openLetter()" class="envelope-icon pulse">
+                ✉️
+            </div>
+            
+            <div id="letter-content" class="letter-paper">
+                <p style="color: #d84315; font-size: 16px; margin-bottom: 10px;">Gửi bạn Hoàng đáng ghét nhưng đáng iu,</p>
+                <!-- BẠN CÓ THỂ SỬA LỜI NHẮN CỦA MÌNH Ở ĐOẠN DƯỚI NÀY -->
+                <p style="color: #333; font-size: 14px; margin-bottom: 15px; line-height: 1.6;">
+                    Chúc mừng kỷ niệm 3 tháng của chúng mình! Cảm ơn anh vì đã luôn chiều chuộng và nhường nhịn sự ngang ngược của em. Khoảng thời gian này vì có lẽ tụi mình chẳng nói chuyện với nhau nhiều nhưng mà em vẫn vui lắm, vui vì ít nhất bạn vẫn trả lời em hằng ngày. Nhưng mà em sợ, có lẽ em được bạn đối xử tốt quá, nuông chiều em quá nên em sợ nếu cứ kéo dài tình trạng này thì có ngày em bỏ bạn mất. Em của lúc đó sẽ không biết em của bây giờ vui vẻ thế nào mỗi lần chúng ta trò chuyện. Em không biết nếu có ngày đó xảy ra em phải làm gì, em không trách bạn gì hết. Đều là cảm nhận ở phía em thôi, nếu có chuyện đó xảy ra. Em vẫn mong những điều tốt đẹp và hạnh phúc đều đến với bạn. Đoạn đường tương lai cũng không phải chịu khó khăn, vất vả hay buồn tủi. Mưa gió không bệnh tật, nếu có ốm đau thì được yêu thương chăm sóc. Mong mọi điều hạnh phúc nhất đều dành cho Nguyện của em! Yêu Bạn! 💙
+                </p>
+                <p style="color: #d84315; font-size: 16px; font-weight: bold; text-align: right;">Ký tên: Em bé của anh 🍓</p>
+                
+                <hr style="border: 1px dashed #ffd54f; margin: 15px 0;">
+                
+                <p style="color: #0277bd; font-size: 14px; font-weight: bold; margin-bottom: 10px;">Đọc xong thì nộp báo cáo tình cảm vào đây:</p>
+                <textarea id="hoang-reply" rows="3" placeholder="Viết vài dòng sến súa vào đây cấm để trống..."></textarea>
+            </div>
+            
+            <button class="btn green" id="btn-send-letter" style="display: none; margin-bottom: 10px;" onclick="sendReply()">Gửi phản hồi ✈️</button>
             <button class="btn" onclick="goMenu()">Quay lại Menu</button>
         </div>
 
