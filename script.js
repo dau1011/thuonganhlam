@@ -135,27 +135,42 @@ function handleGatekeeperNo() {
     showModal("AI CHO!!!! 😡 Tới số rồi!", "🤬", goMenu);
 }
 
-// --- KHỞI TẠO ẢI 1 (RANDOM CÂU HỎI) ---
+// --- THUẬT TOÁN XÁO BÀI CHUYÊN NGHIỆP (CHỐNG TRÙNG LẶP TUYỆT ĐỐI) ---
+function shuffleArray(array) {
+    let arr = [...array];
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
+
+// --- KHỞI TẠO ẢI 1 (RANDOM CÂU HỎI NHƯNG CỐ ĐỊNH Q8) ---
 function goMenu() { showScreen("screen-menu"); }
+
 function startGame() { 
     lives = 3; currentQuestionIndex = 0; q14WrongCount = 0; updateLives(); 
     
-    let shuffledMC = [...dbMC].sort(() => 0.5 - Math.random());
+    // 1. Trộn ngẫu nhiên kho câu Trắc nghiệm
+    let shuffledMC = shuffleArray(dbMC);
     
-    // Tách riêng câu "Có bao giờ em làm Hoàng buồn không?" (q8) ra để bắt buộc thêm vào
+    // 2. Tách riêng câu Q8 ra, sau đó trộn ngẫu nhiên kho câu Tự luận còn lại
     let fixedQ8 = dbText.find(q => q.id === "q8");
-    let remainingText = dbText.filter(q => q.id !== "q8").sort(() => 0.5 - Math.random());
+    let remainingText = shuffleArray(dbText.filter(q => q.id !== "q8"));
     
-    let numMC = Math.floor(Math.random() * 3) + 3; // 3 đến 5 câu Trắc nghiệm
+    // 3. Rút ngẫu nhiên từ 3 đến 5 câu Trắc nghiệm
+    let numMC = Math.floor(Math.random() * 3) + 3; 
     let selectedMC = shuffledMC.slice(0, numMC);
     
-    let numText = 9 - numMC; // Số câu tự luận cần lấy
-    // Gom câu q8 cố định và lấy thêm các câu tự luận khác cho đủ số lượng
+    // 4. Tính toán số câu Tự luận cần rút thêm cho đủ 9 câu (bao gồm luôn Q8)
+    let numText = 9 - numMC; 
     let selectedText = [fixedQ8, ...remainingText.slice(0, numText - 1)];
     
-    // Gộp Trắc nghiệm và Tự luận, sau đó xáo trộn ngẫu nhiên để Q8 nằm ở vị trí bất kỳ
-    currentQuizList = [...selectedMC, ...selectedText].sort(() => 0.5 - Math.random());
-    currentQuizList.push(q16); // Luôn để câu chúc chốt sổ cuối cùng (Câu số 10)
+    // 5. Gộp Trắc nghiệm và Tự luận lại thành 9 câu, rồi xáo bài lần cuối để Q8 nằm lộn xộn
+    currentQuizList = shuffleArray([...selectedMC, ...selectedText]);
+    
+    // 6. Chốt hạ Câu 16 nằm cố định ở vị trí số 10 (cuối cùng)
+    currentQuizList.push(q16); 
 
     showModal("Luật chơi: Anh có 3 mạng. Trả lời sai mất 1 mạng. Hết mạng chơi lại từ đầu!", "📜", firstQ); 
     showScreen("screen-quiz");
