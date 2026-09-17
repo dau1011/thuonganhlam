@@ -242,7 +242,7 @@ function checkPassword() {
     // Chấp nhận nhiều kiểu nhập ngày 18/6
     if (pass === "18/6" || pass === "18/06" || pass === "18-6" || pass === "18-06") {
         document.getElementById("password-area").style.display = "none";
-        document.getElementById("level3-subtitle").innerText = "Mật khẩu chính xác! Bóc tem lá thư đi anh!";
+        document.getElementById("level3-subtitle").innerText = "Mật khẩu chính xác!";
         document.getElementById("level3-subtitle").style.color = "#43a047"; // Đổi màu xanh lá
         document.getElementById("envelope-container").style.display = "block";
         
