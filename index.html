@@ -1,179 +1,96 @@
-// --- DATA & STATE ---
-let lives = 3;
-let currentQuestion = 0;
-let evasionCount = 0;
-let secretClicks = 0;
-let historyLog = [];
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 2-Month Anniversary 💙</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-// Ngăn click dâu tây lan ra ngoài icon
-document.getElementById("secret-trigger").addEventListener("click", function(e) {
-    e.stopPropagation(); 
-    secretClicks++;
-    if(secretClicks === 3) {
-        showHistory();
-        secretClicks = 0;
-    }
-});
+    <div class="container" id="main-container">
+        
+        <!-- MÀN HÌNH MENU -->
+        <div id="screen-menu" class="screen active">
+            <div class="pill-btn">Happy 2-month Anniversary</div>
+            <h1 class="title">Thử thách của anh <span class="pulse">💙</span></h1>
+            
+            <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                <!-- ẢI 1 (Trái tim và Dâu tây) -->
+                <div>
+                    <div class="level-icon pulse" id="level-1-icon" onclick="startGatekeeper()">
+                        <div class="strawberry" id="secret-trigger">🍓</div>
+                    </div>
+                    <p style="color: #0277bd; font-weight: bold; font-size: 14px; margin-top: 5px;">Ải 1: Trả lời sai là dỗi!!!</p>
+                </div>
+                
+                <!-- ẢI 2 (Máy gắp thú - Ban đầu bị khóa) -->
+                <div>
+                    <div class="level-icon" id="level-2-icon" style="filter: grayscale(100%); opacity: 0.5; cursor: not-allowed; margin-top: 30px;" onclick="startLevel2()">
+                        <div class="strawberry">🎰</div>
+                    </div>
+                    <p style="color: #999; font-weight: bold; font-size: 14px; margin-top: 5px;" id="level-2-text">Ải 2: (Vượt Ải 1 mở)</p>
+                </div>
+            </div>
+        </div>
 
-const questions = [
-    { type: 'choice', q: "1. Em có phải người anh thích nhất không?", opts: ["Đúng vậyyy", "Không!"], ans: 0, popT: "Vậy người xinh nhì, xinh ba là ai? 😡", popF: "Ê? 😡" },
-    { type: 'choice', q: "2. Giờ em thành con gián anh có iu em hong?", opts: ["Yêu!!!!!!!!!!!!!!!!!!!", "Không!"], ans: 0, popT: "Sao anh để em biến thành con giản??? 😡", popF: "Alo???? 😡" },
-    { type: 'choice', q: "3. Nếu anh có vợ rồi anh có quen em không?", opts: ["Có", "Không!"], ans: 0, popT: "Sao anh không cưới em? 😡", popF: "TUI GHÉC ANH!!! 😡" },
-    { type: 'choice-text', q: "4. Nếu đang đi chơi với Ngọc thì có điện thoại từ Mai rồi Phương, gọi ai trước?", opts: ["Mai", "Phương", "Khác"], popT: "Đệ tui xem!!! 😡", popF: "TUI GHÉC ANH!!! 😡" },
-    { type: 'choice', q: "5. Nếu em được đổi tên thành nyc của anh, anh có gọi không?", opts: ["Có", "Không!"], ans: 1, popT: "Sao anh còn nhớ tên nyc? 😡", popF: "TUI GHÉC ANH!!! 😡" },
-    { type: 'text', q: "6. Miêu tả em bằng 3 từ.", popT: "Coi trừng tuiiii!!! 😡" },
-    { type: 'text', q: "7. Nếu em không nói lời tạm biệt mà ngày càng xa anh, anh sẽ như thế nào?", popT: "Ghéc anh!!! 😡" },
-    { type: 'text', q: "8. Có bao giờ em làm Hoàng buồn không? (TRẢ LỜI THẬT LÒNG!!!)", popT: "Ghéc anh!!! 😡" },
-    { type: 'text', q: "9. Bạn nhớ điều gì ở em nhất nếu hai đứa không còn bên nhau?", popT: "Yêu anh!!! 😡" },
-    { type: 'info', q: "10. Mong bạn mỗi ngày đều hạnh phúc! 🎉💙", popT: "" }
-];
+        <!-- MÀN HÌNH NÚT CHẠY TRỐN -->
+        <div id="screen-gatekeeper" class="screen">
+            <div class="question-text">Anh yêu em không?</div>
+            <button class="btn" id="btn-yes" onmouseover="evadeButton(this)" onclick="evadeButton(this)">Có</button>
+            <button class="btn" id="btn-no" onclick="handleGatekeeperNo()">Không</button>
+        </div>
 
-// --- NAVIGATION ---
-function showScreen(id) {
-    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-}
+        <!-- MÀN HÌNH TRẮC NGHIỆM CHÍNH (ẢI 1) -->
+        <div id="screen-quiz" class="screen">
+            <div class="lives" id="lives-display">❤️❤️❤️</div>
+            <div class="question-text" id="quiz-question"></div>
+            <div id="quiz-options"></div>
+        </div>
 
-function showModal(text, emoji = "😡", callback = null) {
-    document.getElementById("popup-text").innerText = text;
-    document.getElementById("popup-emoji").innerText = emoji;
-    document.getElementById("popup-modal").style.display = "flex";
-    document.getElementById("popup-modal").dataset.callback = callback ? callback.name : "";
-}
+        <!-- MÀN HÌNH MÁY GẮP THÚ (ẢI 2) -->
+        <div id="screen-level2" class="screen">
+            <div class="question-text">Máy Gắp Kỷ Niệm 🎰</div>
+            <p style="margin-bottom: 15px; font-size: 14px; color: #0288d1;">Xem nhân phẩm anh nay gắp được gì nè!</p>
+            
+            <div class="claw-machine">
+                <div class="claw" id="claw">🦾</div>
+                <!-- Nhóm sticker tự chế -->
+                <div class="stickers-pile">
+                    <img src="1.png" class="sticker-img" alt="sticker" onerror="this.src='https://via.placeholder.com/50/e1f5fe/0288d1?text=1'">
+                    <img src="2.png" class="sticker-img" alt="sticker" onerror="this.src='https://via.placeholder.com/50/e1f5fe/0288d1?text=2'">
+                    <img src="3.png" class="sticker-img" alt="sticker" onerror="this.src='https://via.placeholder.com/50/e1f5fe/0288d1?text=3'">
+                    <img src="4.png" class="sticker-img" alt="sticker" onerror="this.src='https://via.placeholder.com/50/e1f5fe/0288d1?text=4'">
+                    <img src="1.png" class="sticker-img" alt="sticker" onerror="this.src='https://via.placeholder.com/50/e1f5fe/0288d1?text=1'">
+                </div>
+            </div>
+            
+            <button class="btn green" id="btn-gap" onclick="playClaw()">Gắp ngay!</button>
+            <button class="btn" onclick="goMenu()">Quay lại Menu</button>
+        </div>
 
-function closePopup() {
-    document.getElementById("popup-modal").style.display = "none";
-    const cb = document.getElementById("popup-modal").dataset.callback;
-    
-    if(cb === "goMenu") { lives = 3; showScreen("screen-menu"); }
-    else if(cb === "startGame") { startGame(); }
-    else if(cb === "firstQ") { loadQuestion(); } // Sửa lỗi ở đây: Bắt đầu câu 1 không bị nhảy bước
-    else if(cb === "nextQ") { currentQuestion++; loadQuestion(); } // Các câu sau mới cộng thêm
-}
+    </div>
 
-// --- GATEKEEPER (CÓ/KHÔNG) ---
-function startGatekeeper() {
-    evasionCount = 0;
-    document.getElementById("btn-yes").style.position = "static";
-    document.getElementById("btn-no").style.display = "inline-block";
-    showScreen("screen-gatekeeper");
-}
+    <!-- POPUP PHẢN HỒI CHUNG -->
+    <div class="modal" id="popup-modal">
+        <div class="modal-content">
+            <div class="modal-emoji" id="popup-emoji">😡</div>
+            <div class="modal-text" id="popup-text"></div>
+            <!-- Đổi chữ thành Tiếp theo -->
+            <button class="btn" onclick="closePopup()">Tiếp theo ➡️</button>
+        </div>
+    </div>
 
-function evadeButton(btn) {
-    evasionCount++;
-    if(evasionCount > 7) {
-        showModal("Biết anh iu tui òi! Hihi", "🥰", startGame);
-        return;
-    }
-    btn.style.position = "absolute";
-    btn.style.top = Math.random() * 80 + "%";
-    btn.style.left = Math.random() * 80 + "%";
-}
+    <!-- POPUP BẢNG LỜI KHAI CỦA ADMIN (BÍ MẬT) -->
+    <div class="modal" id="history-modal">
+        <div class="modal-content">
+            <h2 style="color: #0288d1; margin-bottom: 15px; text-align: center;">⚖️ Biên bản lời khai</h2>
+            <div id="history-content"></div>
+            <button class="btn" onclick="closeHistory()">Đóng</button>
+        </div>
+    </div>
 
-function handleGatekeeperNo() {
-    document.getElementById("btn-no").style.display = "none";
-    showModal("AI CHO!!!! 😡 Tới số rồi!", "🤬", goMenu);
-}
-
-function goMenu() { showScreen("screen-menu"); }
-function startGame() { 
-    lives = 3; currentQuestion = 0; updateLives(); 
-    showModal("Luật chơi: Anh có 3 mạng. Trả lời sai mất 1 mạng. Hết mạng chơi lại từ đầu!", "📜", firstQ); 
-    showScreen("screen-quiz");
-}
-function firstQ() {} // Hàm ảo để kích hoạt callback
-function nextQ() {}  // Hàm ảo để kích hoạt callback
-
-// --- QUIZ LOGIC ---
-function updateLives() {
-    document.getElementById("lives-display").innerText = "❤️".repeat(lives) + "🖤".repeat(3 - lives);
-}
-
-function shakeScreen() {
-    const container = document.getElementById("main-container");
-    container.classList.add("shake");
-    setTimeout(() => container.classList.remove("shake"), 500);
-}
-
-function loadQuestion() {
-    if (currentQuestion >= questions.length) {
-        showModal("Hoàn thành thử thách! Khá khen cho anh đó!", "🥳", goMenu);
-        return;
-    }
-    let q = questions[currentQuestion];
-    document.getElementById("quiz-question").innerText = q.q;
-    let optionsHTML = "";
-
-    if (q.type === 'choice') {
-        q.opts.forEach((opt, idx) => {
-            optionsHTML += `<button class="btn" onclick="checkChoice(${idx})">${opt}</button>`;
-        });
-    } else if (q.type === 'choice-text') {
-        optionsHTML += `<button class="btn" onclick="wrongAnswer('${q.opts[0]}')">${q.opts[0]}</button>`;
-        optionsHTML += `<button class="btn" onclick="wrongAnswer('${q.opts[1]}')">${q.opts[1]}</button>`;
-        optionsHTML += `<button class="btn" onclick="showInputC()">Khác</button>`;
-        optionsHTML += `<div id="input-c-div" style="display:none; margin-top:10px;">
-                        <input type="text" id="ans-text-c" placeholder="Ghi rõ ra...">
-                        <button class="btn green" onclick="submitTextC()">Gửi</button></div>`;
-    } else if (q.type === 'text') {
-        optionsHTML += `<input type="text" id="ans-text" placeholder="Trình bày đi...">
-                        <button class="btn" onclick="submitText()">Gửi</button>`;
-    } else if (q.type === 'info') {
-        optionsHTML += `<button class="btn green" onclick="goMenu()">Quay lại Menu</button>`;
-    }
-    document.getElementById("quiz-options").innerHTML = optionsHTML;
-}
-
-function checkChoice(idx) {
-    let q = questions[currentQuestion];
-    logAnswer(q.q, q.opts[idx]);
-    if(idx === q.ans) {
-        event.target.classList.add("green");
-        showModal(q.popT, "😡", nextQ);
-    } else {
-        wrongAnswer();
-    }
-}
-
-function wrongAnswer(answeredText = "") {
-    if(answeredText) logAnswer(questions[currentQuestion].q, answeredText);
-    event.target.classList.add("red");
-    shakeScreen();
-    lives--;
-    updateLives();
-    if(lives <= 0) {
-        showModal("HẾT MẠNG!!! QUAY LẠI TỪ ĐẦU NHA CON TRAI!", "☠️", goMenu);
-    } else {
-        showModal(questions[currentQuestion].popF, "😡");
-    }
-}
-
-// Q4 Logic
-function showInputC() { document.getElementById("input-c-div").style.display = "block"; }
-function submitTextC() {
-    let text = document.getElementById("ans-text-c").value;
-    if(!text) return;
-    logAnswer(questions[currentQuestion].q, "Khác: " + text);
-    showModal(questions[currentQuestion].popT, "😡", nextQ);
-}
-
-// Q6-9 Logic
-function submitText() {
-    let text = document.getElementById("ans-text").value;
-    if(!text) { alert("Nhập đàng hoàng vô!"); return; }
-    logAnswer(questions[currentQuestion].q, text);
-    showModal(questions[currentQuestion].popT, "😡", nextQ);
-}
-
-// --- ADMIN SECRET HISTORY ---
-function logAnswer(question, answer) {
-    historyLog.push(`<b>${question}</b><br>Hoàng đáp: <span style="color:#0288d1">${answer}</span>`);
-}
-function showHistory() {
-    let html = "";
-    if(historyLog.length === 0) html = "<p>Chưa có dữ liệu nào bị bắt quả tang...</p>";
-    else html = historyLog.map(h => `<div class="history-item">${h}</div>`).join("");
-    document.getElementById("history-content").innerHTML = html;
-    document.getElementById("history-modal").style.display = "flex";
-}
-function closeHistory() { document.getElementById("history-modal").style.display = "none"; }
+    <script src="script.js"></script>
+</body>
+</html>
