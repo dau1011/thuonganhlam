@@ -19,18 +19,20 @@
             <h1 class="title">Thử thách của anh <span class="pulse">💙</span></h1>
             
             <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-                <!-- ẢI 1 (Trái tim và 1 Dâu tây ở giữa) -->
+                <!-- ẢI 1 -->
                 <div>
                     <div class="level-icon pulse" id="level-1-icon" onclick="startGatekeeper()">
-                        <div class="strawberry" id="secret-trigger">🍓</div>
+                        <!-- Đã bỏ style inline để CSS tự thu nhỏ lọt vào trái tim -->
+                        <div class="center-emoji" id="secret-trigger">🍓</div>
                     </div>
                     <p style="color: #0277bd; font-weight: bold; font-size: 14px; margin-top: 5px;">Ải 1: Trả lời sai là dỗi!!!</p>
                 </div>
                 
-                <!-- ẢI 2 (Máy gắp thú - Ban đầu bị khóa) -->
+                <!-- ẢI 2 -->
                 <div>
                     <div class="level-icon" id="level-2-icon" style="filter: grayscale(100%); opacity: 0.5; cursor: not-allowed; margin-top: 30px;" onclick="startLevel2()">
-                        <div class="strawberry" style="font-size: 50px;">🎰</div>
+                        <!-- Đã bỏ style inline để CSS tự thu nhỏ lọt vào trái tim -->
+                        <div class="center-emoji">🎰</div>
                     </div>
                     <p style="color: #999; font-weight: bold; font-size: 14px; margin-top: 5px;" id="level-2-text">Ải 2: (Vượt Ải 1 mở)</p>
                 </div>
@@ -58,14 +60,19 @@
             
             <div class="claw-machine">
                 <div class="claw" id="claw">🦾</div>
-                <!-- 30 Ảnh lấp đầy đáy lồng kính -->
+                <!-- Hồ chứa sticker: Mình để 2 bộ từ 1 đến 20 để tạo thành đống dày -->
                 <div class="stickers-pile">
-                    <!-- Set 1 -->
-                    <img src="1.png" class="sticker-img"><img src="2.png" class="sticker-img"><img src="3.png" class="sticker-img"><img src="4.png" class="sticker-img"><img src="5.png" class="sticker-img"><img src="6.png" class="sticker-img"><img src="7.png" class="sticker-img"><img src="8.png" class="sticker-img"><img src="9.png" class="sticker-img"><img src="10.png" class="sticker-img">
-                    <!-- Set 2 -->
-                    <img src="3.png" class="sticker-img"><img src="1.png" class="sticker-img"><img src="6.png" class="sticker-img"><img src="8.png" class="sticker-img"><img src="2.png" class="sticker-img"><img src="10.png" class="sticker-img"><img src="4.png" class="sticker-img"><img src="9.png" class="sticker-img"><img src="5.png" class="sticker-img"><img src="7.png" class="sticker-img">
-                    <!-- Set 3 -->
-                    <img src="7.png" class="sticker-img"><img src="9.png" class="sticker-img"><img src="2.png" class="sticker-img"><img src="5.png" class="sticker-img"><img src="1.png" class="sticker-img"><img src="10.png" class="sticker-img"><img src="8.png" class="sticker-img"><img src="4.png" class="sticker-img"><img src="3.png" class="sticker-img"><img src="6.png" class="sticker-img">
+                    <!-- BỘ 1 -->
+                    <img src="1.png" class="sticker-img"><img src="2.png" class="sticker-img"><img src="3.png" class="sticker-img"><img src="4.png" class="sticker-img"><img src="5.png" class="sticker-img">
+                    <img src="6.png" class="sticker-img"><img src="7.png" class="sticker-img"><img src="8.png" class="sticker-img"><img src="9.png" class="sticker-img"><img src="10.png" class="sticker-img">
+                    <img src="11.png" class="sticker-img"><img src="12.png" class="sticker-img"><img src="13.png" class="sticker-img"><img src="14.png" class="sticker-img"><img src="15.png" class="sticker-img">
+                    <img src="16.png" class="sticker-img"><img src="17.png" class="sticker-img"><img src="18.png" class="sticker-img"><img src="19.png" class="sticker-img"><img src="20.png" class="sticker-img">
+                    
+                    <!-- BỘ 2 (Lộn xộn để lấp đầy lồng kính) -->
+                    <img src="5.png" class="sticker-img"><img src="12.png" class="sticker-img"><img src="3.png" class="sticker-img"><img src="18.png" class="sticker-img"><img src="9.png" class="sticker-img">
+                    <img src="1.png" class="sticker-img"><img src="14.png" class="sticker-img"><img src="8.png" class="sticker-img"><img src="19.png" class="sticker-img"><img src="4.png" class="sticker-img">
+                    <img src="16.png" class="sticker-img"><img src="7.png" class="sticker-img"><img src="11.png" class="sticker-img"><img src="20.png" class="sticker-img"><img src="2.png" class="sticker-img">
+                    <img src="15.png" class="sticker-img"><img src="6.png" class="sticker-img"><img src="17.png" class="sticker-img"><img src="10.png" class="sticker-img"><img src="13.png" class="sticker-img">
                 </div>
             </div>
             
