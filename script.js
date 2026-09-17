@@ -11,7 +11,7 @@ document.getElementById("secret-trigger").addEventListener("click", function(e) 
     secretClicks++;
     if(secretClicks === 3) {
         showHistory();
-        secretClicks = 0; // reset sau khi mở
+        secretClicks = 0;
     }
 });
 
@@ -44,15 +44,17 @@ function showModal(text, emoji = "😡", callback = null) {
 function closePopup() {
     document.getElementById("popup-modal").style.display = "none";
     const cb = document.getElementById("popup-modal").dataset.callback;
+    
     if(cb === "goMenu") { lives = 3; showScreen("screen-menu"); }
     else if(cb === "nextQ") { currentQuestion++; loadQuestion(); }
+    else if(cb === "startGame") { startGame(); }
 }
 
 // --- GATEKEEPER (CÓ/KHÔNG) ---
 function startGatekeeper() {
     evasionCount = 0;
     document.getElementById("btn-yes").style.position = "static";
-    document.getElementById("btn-no").style.display = "block";
+    document.getElementById("btn-no").style.display = "inline-block";
     showScreen("screen-gatekeeper");
 }
 
