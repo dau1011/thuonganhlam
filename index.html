@@ -15,26 +15,21 @@
         <!-- MÀN HÌNH MENU -->
         <div id="screen-menu" class="screen active">
             <div class="pill-btn">Happy 3-month Anniversary</div>
-            <h1 class="title">Yêu anh lómmm <span class="pulse">💙</span></h1>
+            <h1 class="title">Thử thách của anh <span class="pulse">💙</span></h1>
             
             <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
-                <!-- ẢI 1 -->
                 <div>
                     <div class="level-icon pulse" id="level-1-icon" onclick="startGatekeeper()">
                         <div class="center-emoji-small" id="secret-trigger">🍓</div>
                     </div>
                     <p style="color: #0277bd; font-weight: bold; font-size: 14px; margin-top: 5px;">Ải 1</p>
                 </div>
-                
-                <!-- ẢI 2 -->
                 <div>
                     <div class="level-icon" id="level-2-icon" style="filter: grayscale(100%); opacity: 0.5; cursor: not-allowed; margin-top: 30px;" onclick="startLevel2()">
                         <div class="center-emoji-small" style="font-size: 28px;">🎰</div>
                     </div>
                     <p style="color: #999; font-weight: bold; font-size: 14px; margin-top: 5px;" id="level-2-text">Ải 2 (Khóa)</p>
                 </div>
-
-                <!-- ẢI 3 -->
                 <div>
                     <div class="level-icon" id="level-3-icon" style="filter: grayscale(100%); opacity: 0.5; cursor: not-allowed;" onclick="startLevel3()">
                         <div class="center-emoji-small" style="font-size: 28px;">💌</div>
@@ -56,6 +51,11 @@
             <div class="lives" id="lives-display">❤️❤️❤️</div>
             <div class="question-text" id="quiz-question"></div>
             <div id="quiz-options"></div>
+            <!-- Khung nhập Khác (Dùng chung) -->
+            <div id="input-c-div" style="display:none; margin-top:10px;">
+                <input type="text" id="ans-text-c" placeholder="Nóii đi mò...">
+                <button class="btn green" id="btn-submit-c" onclick="submitTextC()">Gửi</button>
+            </div>
         </div>
 
         <!-- MÀN HÌNH MÁY GẮP THÚ (ẢI 2) -->
@@ -81,31 +81,27 @@
 
         <!-- MÀN HÌNH GỬI THƯ (ẢI 3) -->
         <div id="screen-level3" class="screen">
-            <div class="question-text">Có Thư Nèeeee 💌</div>
-            <p id="level3-subtitle" style="margin-bottom: 15px; font-size: 14px; color: #0288d1;">Kỉ niệm đầu tiên cụa tụi mình là ngày,tháng nào ấy nhỉiii???</p>
+            <div class="question-text">Hòm Thư Tình Yêu 💌</div>
+            <p id="level3-subtitle" style="margin-bottom: 15px; font-size: 14px; color: #0288d1;">Kỷ niệm đầu tiên cụa tụi mình là ngày, tháng nào ấy nhỉiiiiii</p>
             
-            <!-- Khu vực nhập mật khẩu -->
             <div id="password-area">
-                <input type="text" id="letter-password" placeholder="VD: 13/01, 10/11,..">
+                <input type="text" id="letter-password" placeholder="VD: 18/6">
                 <button class="btn green" onclick="checkPassword()">Mở khóa 🔓</button>
             </div>
 
-            <!-- Phong bì (Ẩn đi cho đến khi nhập đúng pass) -->
-            <div id="envelope-container" onclick="openLetter()" class="envelope-icon pulse" style="display: none;">
-                ✉️
-            </div>
+            <div id="envelope-container" onclick="openLetter()" class="envelope-icon pulse" style="display: none;">✉️</div>
             
             <div id="letter-content" class="letter-paper">
                 <p style="color: #d84315; font-size: 16px; margin-bottom: 10px;">Gửi bạn Hoàng đáng ghét nhưng đáng iu,</p>
-                <p style="color: #333; font-size: 14px; margin-bottom: 15px; line-height: 1.6;">   
-                    Chúc mừng kỷ niệm 3 tháng của chúng mình! Cảm ơn anh vì đã luôn chiều chuộng em. Khoảng thời gian này vì có lẽ tụi mình chẳng nói chuyện với nhau nhiều nhưng mà em vẫn vui lắm, vui vì ít nhất bạn vẫn trả lời em hằng ngày. Nhưng mà em sợ, có lẽ em được bạn đối xử tốt quá, nuông chiều em quá nên em sợ nếu cứ kéo dài tình trạng này thì có ngày em bỏ bạn mất - điều mà chẳng muốn tí nào😭😭😭😭 huhu. Những cuộc trò chuyện dở dang, những lời em muốn nói r lại thôi. Có khoảng thời gian em hong biết nhắn với bạn cái gì bây giờ, những tin nhắn với bạn em mong chờ được phản hồi nhưng chưa đến đâu bạn lại ọp mất tiu ời. Bạn bận bịu tùm lum em lo gần chít nhưng mà hong biết còn tới đâu... Huhu có phại em nhạy cảm quá, em không thông cảm đủ cho bạn không hay em ích kỷ jkwcjwjnnư. (NHƯNG MÀ EM THƯƠNG BẠN NHIỀU LẮM CNƯNƠNN) Em của lúc đó sẽ không biết em của bây giờ vui vẻ thế nào mỗi lần chúng ta trò chuyện. Em không biết nếu có ngày đó xảy ra em phải làm gì, em không trách bạn gì hết á (xót muốn chết trách chiết cái rì 😭😭😭). Đó đều là cảm nhận ở phía em thôi, nếu có chuyện đó xảy ra. Em vẫn mong những điều tốt đẹp và hạnh phúc đều đến với bạn. Đoạn đường tương lai cũng không phải chịu khó khăn, vất vả hay buồn tủi. Mưa gió không bệnh tật, nếu có ốm đau thì được yêu thương chăm sóc. Mong mọi điều hạnh phúc nhất đều dành cho Nguyện của em! Yêu Bạn! 💙
+                <p style="color: #333; font-size: 14px; margin-bottom: 15px; line-height: 1.6;">
+                   Chúc mừng kỷ niệm 3 tháng của chúng mình! Cảm ơn anh vì đã luôn chiều chuộng em. Khoảng thời gian này vì có lẽ tụi mình chẳng nói chuyện với nhau nhiều nhưng mà em vẫn vui lắm, vui vì ít nhất bạn vẫn trả lời em hằng ngày. Nhưng mà em sợ, có lẽ em được bạn đối xử tốt quá, nuông chiều em quá nên em sợ nếu cứ kéo dài tình trạng này thì có ngày em bỏ bạn mất - điều mà chẳng muốn tí nào😭😭😭😭 huhu. Những cuộc trò chuyện dở dang, những lời em muốn nói r lại thôi. Có khoảng thời gian em hong biết nhắn với bạn cái gì bây giờ, những tin nhắn với bạn em mong chờ được phản hồi nhưng chưa đến đâu bạn lại ọp mất tiu ời. Bạn bận bịu tùm lum em lo gần chít nhưng mà hong biết còn tới đâu... Huhu có phại em nhạy cảm quá, em không thông cảm đủ cho bạn không hay em ích kỷ jkwcjwjnnư. (NHƯNG MÀ EM THƯƠNG BẠN NHIỀU LẮM CNƯNƠNN) Em của lúc đó sẽ không biết em của bây giờ vui vẻ thế nào mỗi lần chúng ta trò chuyện. Em không biết nếu có ngày đó xảy ra em phải làm gì, em không trách bạn gì hết á (xót muốn chết trách chiết cái rì 😭😭😭). Đó đều là cảm nhận ở phía em thôi, nếu có chuyện đó xảy ra. Em vẫn mong những điều tốt đẹp và hạnh phúc đều đến với bạn. Đoạn đường tương lai cũng không phải chịu khó khăn, vất vả hay buồn tủi. Mưa gió không bệnh tật, nếu có ốm đau thì được yêu thương chăm sóc. Mong mọi điều hạnh phúc nhất đều dành cho Nguyện của em! Yêu Bạn! 💙
                 </p>
-                <p style="color: #d84315; font-size: 16px; font-weight: bold; text-align: right;">Ký tên: Bé Dâu cư tê đẳng cấp số 1 tg 🍓</p>
+                <p style="color: #d84315; font-size: 16px; font-weight: bold; text-align: right;">Ký tên: Bé Dâu cư tê đắng cấp số 1 tg 🍓</p>
                 
                 <hr style="border: 1px dashed #ffd54f; margin: 15px 0;">
                 
-                <p style="color: #0277bd; font-size: 14px; font-weight: bold; margin-bottom: 10px;">Yêu cá ngựa cụa em nhắm:</p>
-                <textarea id="hoang-reply" rows="3" placeholder="Hăm viết cũn đc ọ làm cho đủ thủ tục hoi..."></textarea>
+                <p style="color: #0277bd; font-size: 14px; font-weight: bold; margin-bottom: 10px;">Yêu ank lớm ca ngựa cụa emmm:</p>
+                <textarea id="hoang-reply" rows="3" placeholder="Hăm viết cũng đượccc em để cho đủ hoi..."></textarea>
             </div>
             
             <button class="btn green" id="btn-send-letter" style="display: none; margin-bottom: 10px;" onclick="sendReply()">Gửi phản hồi ✈️</button>
@@ -124,10 +120,9 @@
         </div>
     </div>
 
-    <!-- POPUP BẢNG LỜI KHAI -->
     <div class="modal" id="history-modal">
         <div class="modal-content">
-            <h2 style="color: #0288d1; margin-bottom: 15px; text-align: center;">⚖️ Nói rì vậy taaa</h2>
+            <h2 style="color: #0288d1; margin-bottom: 15px; text-align: center;">⚖️ Biên bản lời khai</h2>
             <div id="history-content"></div>
             <button class="btn" onclick="closeHistory()">Đóng</button>
         </div>
