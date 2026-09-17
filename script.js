@@ -140,23 +140,22 @@ function goMenu() { showScreen("screen-menu"); }
 function startGame() { 
     lives = 3; currentQuestionIndex = 0; q14WrongCount = 0; updateLives(); 
     
-    // Đảo lộn Pool MC và Pool Text
     let shuffledMC = [...dbMC].sort(() => 0.5 - Math.random());
-    let shuffledText = [...dbText].sort(() => 0.5 - Math.random());
     
-    // Lấy random 3 đến 5 câu Trắc nghiệm
-    let numMC = Math.floor(Math.random() * 3) + 3; // Lấy 3, 4 hoặc 5
+    // Tách riêng câu "Có bao giờ em làm Hoàng buồn không?" (q8) ra để bắt buộc thêm vào
+    let fixedQ8 = dbText.find(q => q.id === "q8");
+    let remainingText = dbText.filter(q => q.id !== "q8").sort(() => 0.5 - Math.random());
+    
+    let numMC = Math.floor(Math.random() * 3) + 3; // 3 đến 5 câu Trắc nghiệm
     let selectedMC = shuffledMC.slice(0, numMC);
     
-    // Lấy phần còn lại từ câu Text để đủ 9 câu
-    let numText = 9 - numMC;
-    let selectedText = shuffledText.slice(0, numText);
+    let numText = 9 - numMC; // Số câu tự luận cần lấy
+    // Gom câu q8 cố định và lấy thêm các câu tự luận khác cho đủ số lượng
+    let selectedText = [fixedQ8, ...remainingText.slice(0, numText - 1)];
     
-    // Gom lại và đảo lộn thứ tự 9 câu này
+    // Gộp Trắc nghiệm và Tự luận, sau đó xáo trộn ngẫu nhiên để Q8 nằm ở vị trí bất kỳ
     currentQuizList = [...selectedMC, ...selectedText].sort(() => 0.5 - Math.random());
-    
-    // Thêm Câu 16 vào vị trí số 10
-    currentQuizList.push(q16);
+    currentQuizList.push(q16); // Luôn để câu chúc chốt sổ cuối cùng (Câu số 10)
 
     showModal("Luật chơi: Anh có 3 mạng. Trả lời sai mất 1 mạng. Hết mạng chơi lại từ đầu!", "📜", firstQ); 
     showScreen("screen-quiz");
