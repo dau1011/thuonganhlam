@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 2-Month Anniversary 💙</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Gọi file CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container" id="main-container">
+        
+        <!-- MÀN HÌNH MENU -->
+        <div id="screen-menu" class="screen active">
+            <div class="pill-btn">Happy 2-month Anniversary</div>
+            <h1 class="title">Thử thách của anh <span class="pulse">💙</span></h1>
+            
+            <div class="level-icon pulse" onclick="startGatekeeper()">
+                🐰
+                <div class="strawberry" id="secret-trigger">🍓</div>
+            </div>
+            <p style="color: #0277bd; font-weight: bold;">Trả lời sai là em dỗi đó!!!!!!!</p>
+        </div>
+
+        <!-- MÀN HÌNH NÚT CHẠY TRỐN -->
+        <div id="screen-gatekeeper" class="screen">
+            <div class="question-text">Anh yêu em không?</div>
+            <button class="btn" id="btn-yes" onmouseover="evadeButton(this)" onclick="evadeButton(this)">Có</button>
+            <button class="btn" id="btn-no" onclick="handleGatekeeperNo()">Không</button>
+        </div>
+
+        <!-- MÀN HÌNH TRẮC NGHIỆM CHÍNH -->
+        <div id="screen-quiz" class="screen">
+            <div class="lives" id="lives-display">❤️❤️❤️</div>
+            <div class="question-text" id="quiz-question"></div>
+            <div id="quiz-options"></div>
+        </div>
+
+    </div>
+
+    <!-- POPUP PHẢN HỒI (CHỬI XÉO) -->
+    <div class="modal" id="popup-modal">
+        <div class="modal-content">
+            <div class="modal-emoji" id="popup-emoji">😡</div>
+            <div class="modal-text" id="popup-text"></div>
+            <button class="btn" onclick="closePopup()">Dạ...</button>
+        </div>
+    </div>
+
+    <!-- POPUP BẢNG LỜI KHAI (BÍ MẬT) -->
+    <div class="modal" id="history-modal">
+        <div class="modal-content">
+            <h2 style="color: #0288d1; margin-bottom: 15px; text-align: center;">⚖️ Biên bản lời khai</h2>
+            <div id="history-content"></div>
+            <button class="btn" onclick="closeHistory()">Đóng</button>
+        </div>
+    </div>
+
+    <!-- Gọi file JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
