@@ -201,7 +201,7 @@ function loadQuestion() {
 
 function finishLevel1() {
     unlockNextLevels(); 
-    showModal("Hoàn thành thử thách! Khá khen cho anh đó!", "🥳", goMenu);
+    showModal("Hoàn thành thử thách!", "🥳", goMenu);
 }
 
 // --- KIỂM TRA TRẮC NGHIỆM ---
