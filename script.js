@@ -230,7 +230,7 @@ function startLevel3() {
     document.getElementById("btn-send-letter").style.display = "none";
     document.getElementById("hoang-reply").value = "";
     document.getElementById("letter-password").value = "";
-    document.getElementById("level3-subtitle").innerText = "Tụi mìn kỷ niệm ngày nào ấy nhỉiii";
+    document.getElementById("level3-subtitle").innerText = "Tụi mìn kỷ niệm ngày/tháng nào ấy nhỉiii?????";
     document.getElementById("level3-subtitle").style.color = "#0288d1";
     
     showScreen("screen-level3");
