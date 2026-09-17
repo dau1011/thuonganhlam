@@ -52,11 +52,10 @@ function closePopup() {
     document.getElementById("popup-modal").style.display = "none";
     const cb = document.getElementById("popup-modal").dataset.callback;
     
-    // Điều hướng các logic nút bấm
     if(cb === "goMenu") { lives = 3; showScreen("screen-menu"); }
     else if(cb === "startGame") { startGame(); }
-    else if(cb === "firstQ") { loadQuestion(); } // Gọi thẳng vào câu 1
-    else if(cb === "nextQ") { currentQuestion++; loadQuestion(); } // Sang câu tiếp theo
+    else if(cb === "firstQ") { loadQuestion(); } 
+    else if(cb === "nextQ") { currentQuestion++; loadQuestion(); }
     else if(cb === "resetClaw") { resetClaw(); }
 }
 
@@ -93,8 +92,8 @@ function startGame() {
     showScreen("screen-quiz");
 }
 
-function firstQ() {} // Hàm giả định kích hoạt callback
-function nextQ() {}  // Hàm giả định kích hoạt callback
+function firstQ() {} 
+function nextQ() {}  
 
 function updateLives() {
     document.getElementById("lives-display").innerText = "❤️".repeat(lives) + "🖤".repeat(3 - lives);
@@ -108,8 +107,6 @@ function shakeScreen() {
 
 function loadQuestion() {
     if (currentQuestion >= questions.length) {
-        unlockLevel2(); // Mở khóa ải 2
-        showModal("Hoàn thành thử thách! Khá khen cho anh đó!", "🥳", goMenu);
         return;
     }
     let q = questions[currentQuestion];
@@ -131,9 +128,16 @@ function loadQuestion() {
         optionsHTML += `<input type="text" id="ans-text" placeholder="Trình bày đi...">
                         <button class="btn" onclick="submitText()">Gửi</button>`;
     } else if (q.type === 'info') {
-        optionsHTML += `<button class="btn green" onclick="goMenu()">Quay lại Menu</button>`;
+        // Lỗi cũ nằm ở đây, giờ đã thay bằng hàm finishLevel1() để xử lý mở khóa
+        optionsHTML += `<button class="btn green" onclick="finishLevel1()">Hoàn thành Ải 1!</button>`;
     }
     document.getElementById("quiz-options").innerHTML = optionsHTML;
+}
+
+// Hàm mới xử lý khi hoàn thành câu 10
+function finishLevel1() {
+    unlockLevel2(); // Mở khóa ải 2
+    showModal("Hoàn thành thử thách! Khá khen cho anh đó!", "🥳", goMenu);
 }
 
 function checkChoice(idx) {
@@ -217,12 +221,12 @@ const clawPrizes = [
     { file: "2.png", text: "may mắn cả ngày nhaa bạn ơii" },
     { file: "3.png", text: "yêu anh" },
     { file: "4.png", text: "mỗi ngày đều mong anh hạnh phúc" },
-    { file: "5.png", text: "Em ở đây!" },
-    { file: "6.png", text: "Nhớ anh nhiều lắm" },
-    { file: "7.png", text: "GHÉC ANHHHH" },
-    { file: "8.png", text: "Yêu bản thân nhiều vào nhe chuaaaa" },
+    { file: "5.png", text: "Voucher: Mời em 1 ly trà sữa ngayyyy!" },
+    { file: "6.png", text: "Hình phạt: Thả tim 10 ảnh gần nhất của em!" },
+    { file: "7.png", text: "Nhớ em hông? 😡" },
+    { file: "8.png", text: "Voucher: Một cái ôm free từ em!" },
     { file: "9.png", text: "Mất lượt! Gắp lại đi lêu lêu!" },
-    { file: "10.png", text: "Anh là số 1!" }
+    { file: "10.png", text: "Anh là số 1! (Nhưng em là số 0 nên em bự hơn)" }
 ];
 
 function playClaw() {
