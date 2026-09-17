@@ -14,7 +14,6 @@ body {
 .screen { display: none; }
 .screen.active { display: block; }
 
-/* Menu Screen */
 .pill-btn {
     background: white; border: 2px solid #0288d1; color: #0288d1;
     padding: 8px 20px; border-radius: 50px; font-weight: bold; margin-bottom: 20px;
@@ -23,7 +22,7 @@ body {
 .title { font-size: 24px; color: #0277bd; margin-bottom: 10px; }
 .pulse { display: inline-block; animation: heartbeat 1.5s infinite; }
 
-/* Chỉnh sửa Icon Trái Tim */
+/* Icon Trái Tim */
 .level-icon {
     width: 140px; 
     height: 120px; 
@@ -32,29 +31,20 @@ body {
     cursor: pointer; position: relative;
     transition: 0.3s;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 88 C50 88 10 60 10 32 C10 12 35 12 50 32 C65 12 90 12 90 32 C90 60 50 88 50 88 Z' fill='%23e1f5fe' stroke='%234fc3f7' stroke-width='4' stroke-linejoin='round'/%3E%3C/svg%3E");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    padding-bottom: 5px; /* Chỉnh để 2 sticker nằm ngay tâm */
+    background-size: contain; background-repeat: no-repeat; background-position: center;
+    padding-bottom: 12px; /* Đẩy nhẹ item lên phần bầu bĩnh nhất của trái tim */
 }
-
 .level-icon:hover { 
     transform: scale(1.05); 
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 88 C50 88 10 60 10 32 C10 12 35 12 50 32 C65 12 90 12 90 32 C90 60 50 88 50 88 Z' fill='%23b3e5fc' stroke='%234fc3f7' stroke-width='4' stroke-linejoin='round'/%3E%3C/svg%3E");
 }
 
-/* Thu nhỏ Thỏ & Dâu để vừa lọt trong trái tim */
-.rabbit {
-    font-size: 35px;
-    margin-bottom: -5px; /* Ép bé dâu sát lại bé thỏ */
-    z-index: 10;
-}
+/* Chỉnh Dâu Tây thu nhỏ và căn chính giữa */
 .strawberry { 
-    font-size: 35px; 
-    z-index: 10;
+    font-size: 45px; 
+    z-index: 10; 
 }
 
-/* Gatekeeper & Quiz */
 .question-text { font-size: 20px; margin-bottom: 20px; color: #01579b; font-weight: bold; }
 .btn {
     background: #0288d1; color: white; border: none; padding: 12px 20px;
@@ -70,16 +60,9 @@ input[type="text"] {
 }
 #btn-yes { position: relative; transition: 0.1s; }
 .lives { font-size: 24px; margin-bottom: 15px; color: #e53935; }
+#screen-gatekeeper .btn { width: auto; min-width: 120px; display: inline-block; margin: 10px; }
 
-/* Thu nhỏ nút Có/Không ở màn hình bảo vệ */
-#screen-gatekeeper .btn {
-    width: auto;
-    min-width: 120px;
-    display: inline-block;
-    margin: 10px;
-}
-
-/* Máy gắp thú (Ải 2) */
+/* --- MÁY GẮP THÚ --- */
 .claw-machine {
     background: #e1f5fe;
     border: 4px solid #4fc3f7;
@@ -102,52 +85,45 @@ input[type="text"] {
 .stickers-pile {
     position: absolute;
     bottom: -5px;
+    left: 0;
     width: 100%;
-    text-align: center;
-    white-space: normal; 
-    padding: 0 10px;
+    display: flex;
+    flex-wrap: wrap; 
+    align-content: flex-end; 
+    justify-content: center;
+    padding: 0 5px;
+    z-index: 10;
 }
 .sticker-img {
-    width: 55px; 
-    height: 55px;
+    width: 50px; 
+    height: 50px;
     object-fit: contain;
-    margin: -5px -10px; 
-    vertical-align: bottom;
+    margin: -10px -8px; /* Lấp đầy lộn xộn */
     transition: 0.3s;
 }
+/* Xoay ngẫu nhiên */
+.sticker-img:nth-child(even) { transform: rotate(15deg); }
+.sticker-img:nth-child(3n) { transform: rotate(-20deg); }
+.sticker-img:nth-child(5n) { transform: rotate(25deg); }
+.sticker-img:nth-child(7n) { transform: rotate(-10deg); }
 
-/* Animations */
-@keyframes heartbeat {
-    0% { transform: scale(1); } 25% { transform: scale(1.2); }
-    50% { transform: scale(1); } 75% { transform: scale(1.2); } 100% { transform: scale(1); }
-}
+/* Animations & Modals */
+@keyframes heartbeat { 0% { transform: scale(1); } 25% { transform: scale(1.2); } 50% { transform: scale(1); } 75% { transform: scale(1.2); } 100% { transform: scale(1); } }
 .shake { animation: shake 0.5s; }
-@keyframes shake {
-    0% { transform: translateX(0); } 25% { transform: translateX(-10px); }
-    50% { transform: translateX(10px); } 75% { transform: translateX(-10px); } 100% { transform: translateX(0); }
-}
+@keyframes shake { 0% { transform: translateX(0); } 25% { transform: translateX(-10px); } 50% { transform: translateX(10px); } 75% { transform: translateX(-10px); } 100% { transform: translateX(0); } }
 
-/* Modals */
 .modal {
     display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(0,0,0,0.5); justify-content: center; align-items: center; z-index: 100;
 }
 .modal-content {
-    background: white; border-radius: 20px; 
-    text-align: center; border: 4px solid #0288d1;
-    width: 85%; 
-    max-width: 320px;
-    padding: 20px;
+    background: white; border-radius: 20px; text-align: center; border: 4px solid #0288d1;
+    width: 85%; max-width: 320px; padding: 20px;
 }
 .modal-text { font-size: 18px; margin-bottom: 15px; font-weight: bold; color: #d32f2f; }
 .modal-emoji { font-size: 50px; margin-bottom: 10px; }
 .modal-emoji img {
-    width: 120px;
-    height: 120px;
-    object-fit: contain;
-    animation: heartbeat 1s infinite;
+    width: 120px; height: 120px; object-fit: contain; animation: heartbeat 1s infinite;
 }
-
-/* History Modal */
 #history-modal .modal-content { max-height: 80vh; overflow-y: auto; text-align: left; }
 .history-item { border-bottom: 1px dashed #ccc; padding: 10px 0; font-size: 14px; }
