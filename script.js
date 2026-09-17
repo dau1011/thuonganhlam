@@ -135,7 +135,7 @@ function submitText() {
 
 function logAnswer(question, answer) { historyLog.push(`<b>${question}</b><br>Hoàng đáp: <span style="color:#0288d1">${answer}</span>`); }
 function showHistory() {
-    let html = (historyLog.length === 0) ? "<p>Chưa có dữ liệu nào bị bắt quả tang...</p>" : historyLog.map(h => `<div class="history-item" style="padding:10px;">${h}</div>`).join("");
+    let html = (historyLog.length === 0) ? "<p>Tò mò quớ...</p>" : historyLog.map(h => `<div class="history-item" style="padding:10px;">${h}</div>`).join("");
     document.getElementById("history-content").innerHTML = html; document.getElementById("history-modal").style.display = "flex";
 }
 function closeHistory() { document.getElementById("history-modal").style.display = "none"; }
@@ -230,7 +230,7 @@ function startLevel3() {
     document.getElementById("btn-send-letter").style.display = "none";
     document.getElementById("hoang-reply").value = "";
     document.getElementById("letter-password").value = "";
-    document.getElementById("level3-subtitle").innerText = "Tụi mìn kỷ niệm ngày/tháng nào ấy nhỉiii?????";
+    document.getElementById("level3-subtitle").innerText = "Tụi mìn kỷ niệm ngày,tháng nào ấy nhỉiii?????";
     document.getElementById("level3-subtitle").style.color = "#0288d1";
     
     showScreen("screen-level3");
