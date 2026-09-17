@@ -20,22 +20,22 @@ body {
     padding: 8px 20px; border-radius: 50px; font-weight: bold; margin-bottom: 20px;
     display: inline-block;
 }
-.title { font-size: 24px; color: #0277bd; margin-bottom: 30px; }
+.title { font-size: 24px; color: #0277bd; margin-bottom: 10px; }
 .pulse { display: inline-block; animation: heartbeat 1.5s infinite; }
 
-/* Chỉnh sửa Icon thành hình trái tim */
+/* Chỉnh sửa Icon Trái Tim */
 .level-icon {
     width: 140px; 
     height: 120px; 
-    margin: 0 auto 10px;
+    margin: 30px auto; /* Tăng khoảng cách trên dưới để tim nằm ngay giữa khoảng trắng */
     display: flex; flex-direction: column; justify-content: center; align-items: center;
-    font-size: 40px; cursor: pointer; position: relative;
+    cursor: pointer; position: relative;
     transition: 0.3s;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 88 C50 88 10 60 10 32 C10 12 35 12 50 32 C65 12 90 12 90 32 C90 60 50 88 50 88 Z' fill='%23e1f5fe' stroke='%234fc3f7' stroke-width='4' stroke-linejoin='round'/%3E%3C/svg%3E");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    padding-bottom: 20px; 
+    padding-bottom: 10px; /* Đẩy dâu tây nhích lên để nằm đúng tâm của hình trái tim */
 }
 
 .level-icon:hover { 
@@ -43,11 +43,11 @@ body {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 88 C50 88 10 60 10 32 C10 12 35 12 50 32 C65 12 90 12 90 32 C90 60 50 88 50 88 Z' fill='%23b3e5fc' stroke='%234fc3f7' stroke-width='4' stroke-linejoin='round'/%3E%3C/svg%3E");
 }
 
+/* Chỉnh trái dâu tây */
 .strawberry { 
-    position: absolute; 
-    bottom: 22px; 
-    font-size: 30px; 
+    font-size: 55px; /* Phóng to trái dâu vì giờ nó đứng 1 mình */
     z-index: 10;
+    /* Đã gỡ bỏ position: absolute để nó tự động ra chính giữa nhờ flexbox */
 }
 
 /* Gatekeeper & Quiz */
