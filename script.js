@@ -59,7 +59,7 @@ function startGatekeeper() {
 
 function evadeButton(btn) {
     evasionCount++;
-    if(evasionCount > 7) { showModal("Biết anh iu tui òi! Hihi", "🥰", startGame); return; }
+    if(evasionCount > 7) { showModal("Biết anh iu tui òi! Hihi", "😋", startGame); return; }
     btn.style.position = "absolute";
     btn.style.top = Math.random() * 80 + "%";
     btn.style.left = Math.random() * 80 + "%";
@@ -99,7 +99,7 @@ function loadQuestion() {
         optionsHTML += `<button class="btn" onclick="showInputC()">Khác</button>`;
         optionsHTML += `<div id="input-c-div" style="display:none; margin-top:10px;"><input type="text" id="ans-text-c" placeholder="Ghi rõ ra..."><button class="btn green" onclick="submitTextC()">Gửi</button></div>`;
     } else if (q.type === 'text') {
-        optionsHTML += `<input type="text" id="ans-text" placeholder="Phại nói thiệt lòng đó..."><button class="btn" onclick="submitText()">Gửi</button>`;
+        optionsHTML += `<input type="text" id="ans-text" placeholder="Phại nói thiệt lòng đóo..."><button class="btn" onclick="submitText()">Gửi</button>`;
     } else if (q.type === 'info') {
         optionsHTML += `<button class="btn green" onclick="finishLevel1()">Hoàn thành Ải 1!</button>`;
     }
@@ -108,7 +108,7 @@ function loadQuestion() {
 
 function finishLevel1() {
     unlockNextLevels(); 
-    showModal("Hoàn thành thử thách! Khá khen cho anh đó!", "🥳", goMenu);
+    showModal("Hoàn thành thử thách! Giỏiii hế!", "🥳", goMenu);
 }
 
 function checkChoice(idx) {
@@ -147,13 +147,11 @@ let levelsUnlocked = false;
 function unlockNextLevels() {
     levelsUnlocked = true;
     
-    // Mở ải 2
     let l2 = document.getElementById("level-2-icon");
     l2.style.filter = "none"; l2.style.opacity = "1"; l2.style.cursor = "pointer"; l2.classList.add("pulse");
     document.getElementById("level-2-text").innerText = "Ải 2: Gắp quà!";
     document.getElementById("level-2-text").style.color = "#0277bd";
     
-    // Mở ải 3
     let l3 = document.getElementById("level-3-icon");
     l3.style.filter = "none"; l3.style.opacity = "1"; l3.style.cursor = "pointer"; l3.classList.add("pulse");
     document.getElementById("level-3-text").innerText = "Ải 3: Mở thư!";
@@ -201,11 +199,9 @@ function playClaw() {
     btn.disabled = true;
     btn.innerText = "Đang gắp...";
 
-    // Càng hạ xuống
     claw.style.top = "110px";
 
     setTimeout(() => {
-        // Càng kéo lên
         claw.style.top = "-15px";
 
         setTimeout(() => {
@@ -223,30 +219,62 @@ function resetClaw() {
     btn.innerText = "Gắp ngay!";
 }
 
-// --- LOGIC ẢI 3: GỬI THƯ ---
+// --- LOGIC ẢI 3: GỬI THƯ (BẢO MẬT PASSWORD) ---
 function startLevel3() {
     if(!levelsUnlocked) { showModal("Phải qua Ải 1 mới được mở thư nhaaa!", "🔒", goMenu); return; }
+    
+    // Reset lại màn hình nhập pass mỗi khi vào lại
+    document.getElementById("password-area").style.display = "block";
+    document.getElementById("envelope-container").style.display = "none";
+    document.getElementById("letter-content").style.display = "none";
+    document.getElementById("btn-send-letter").style.display = "none";
+    document.getElementById("hoang-reply").value = "";
+    document.getElementById("letter-password").value = "";
+    document.getElementById("level3-subtitle").innerText = "Tụi mìn kỷ niệm ngày nào ấy nhỉiii";
+    document.getElementById("level3-subtitle").style.color = "#0288d1";
+    
     showScreen("screen-level3");
+}
+
+function checkPassword() {
+    let pass = document.getElementById("letter-password").value.trim();
+    
+    // Chấp nhận nhiều kiểu nhập ngày 18/6
+    if (pass === "18/6" || pass === "18/06" || pass === "18-6" || pass === "18-06") {
+        document.getElementById("password-area").style.display = "none";
+        document.getElementById("level3-subtitle").innerText = "Mật khẩu chính xác! Bóc tem lá thư đi anh!";
+        document.getElementById("level3-subtitle").style.color = "#43a047"; // Đổi màu xanh lá
+        document.getElementById("envelope-container").style.display = "block";
+        
+        // Khôi phục lại icon phong bì ban đầu
+        document.getElementById("envelope-container").innerText = "✉️";
+        document.getElementById("envelope-container").style.fontSize = "100px";
+        document.getElementById("envelope-container").classList.add("pulse");
+        document.getElementById("envelope-container").onclick = openLetter;
+        
+        showModal("Ting ting! Giỏiii hế", "🥳");
+    } else {
+        shakeScreen(); // Rung màn hình khi sai
+        showModal("Sai bét! Ngày quan trọng mà cũng quên hả???", "😡");
+    }
 }
 
 function openLetter() {
     document.getElementById("envelope-container").innerText = "💌";
     document.getElementById("envelope-container").style.fontSize = "70px"; 
     document.getElementById("envelope-container").classList.remove("pulse");
-    document.getElementById("envelope-container").onclick = null; // Tắt click mở phong bì
+    document.getElementById("envelope-container").onclick = null; 
     
-    // Hiển thị nội dung thư
     document.getElementById("letter-content").style.display = "block";
     document.getElementById("btn-send-letter").style.display = "inline-block";
     
-    // Bắn pháo hoa ăn mừng xíu
     triggerFireworks();
 }
 
 function sendReply() {
     let reply = document.getElementById("hoang-reply").value;
     if(!reply.trim()) {
-        showModal("Cấm gửi giấy trắng nha!(GỬI CŨNG ĐƯỢC EM ĐE DỌA DEMO THOI)", "😡");
+        showModal("Hăm gửi cũng hăm saoo", "😡");
         return;
     }
     
@@ -254,13 +282,4 @@ function sendReply() {
     historyLog.push(`<b>💌 THƯ PHẢN HỒI TỪ HOÀNG:</b><br><span style="color:#d84315; font-style: italic;">"${reply}"</span>`);
     
     showModal("Đã nhận được tâm thư của anh! Yêu anh! 💙", "🥰", goMenu);
-    
-    // Ẩn lá thư đi và khôi phục lại phong bì như cũ (nếu muốn đọc lại)
-    document.getElementById("hoang-reply").value = "";
-    document.getElementById("letter-content").style.display = "none";
-    document.getElementById("btn-send-letter").style.display = "none";
-    document.getElementById("envelope-container").innerText = "✉️";
-    document.getElementById("envelope-container").style.fontSize = "100px";
-    document.getElementById("envelope-container").classList.add("pulse");
-    document.getElementById("envelope-container").onclick = openLetter;
 }
