@@ -6,6 +6,8 @@
     <title>Happy 2-Month Anniversary 💙</title>
     <link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <!-- Thư viện tạo hiệu ứng pháo hoa -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 </head>
 <body>
 
@@ -17,19 +19,18 @@
             <h1 class="title">Thử thách của anh <span class="pulse">💙</span></h1>
             
             <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-                <!-- ẢI 1 (Trái tim chứa Thỏ và Dâu) -->
+                <!-- ẢI 1 (Trái tim và 1 Dâu tây ở giữa) -->
                 <div>
                     <div class="level-icon pulse" id="level-1-icon" onclick="startGatekeeper()">
-                        <div class="rabbit">🐰</div>
                         <div class="strawberry" id="secret-trigger">🍓</div>
                     </div>
                     <p style="color: #0277bd; font-weight: bold; font-size: 14px; margin-top: 5px;">Ải 1: Trả lời sai là dỗi!!!</p>
                 </div>
                 
-                <!-- ẢI 2 (Máy gắp thú) -->
+                <!-- ẢI 2 (Máy gắp thú - Ban đầu bị khóa) -->
                 <div>
                     <div class="level-icon" id="level-2-icon" style="filter: grayscale(100%); opacity: 0.5; cursor: not-allowed; margin-top: 30px;" onclick="startLevel2()">
-                        <div class="strawberry" style="font-size: 55px;">🎰</div>
+                        <div class="strawberry" style="font-size: 50px;">🎰</div>
                     </div>
                     <p style="color: #999; font-weight: bold; font-size: 14px; margin-top: 5px;" id="level-2-text">Ải 2: (Vượt Ải 1 mở)</p>
                 </div>
@@ -57,18 +58,14 @@
             
             <div class="claw-machine">
                 <div class="claw" id="claw">🦾</div>
-                <!-- Nhóm 10 sticker tự chế -->
+                <!-- 30 Ảnh lấp đầy đáy lồng kính -->
                 <div class="stickers-pile">
-                    <img src="1.png" class="sticker-img" alt="sticker" onerror="this.src='https://via.placeholder.com/50/e1f5fe/0288d1?text=1'">
-                    <img src="2.png" class="sticker-img" alt="sticker" onerror="this.src='https://via.placeholder.com/50/e1f5fe/0288d1?text=2'">
-                    <img src="3.png" class="sticker-img" alt="sticker" onerror="this.src='https://via.placeholder.com/50/e1f5fe/0288d1?text=3'">
-                    <img src="4.png" class="sticker-img" alt="sticker" onerror="this.src='https://via.placeholder.com/50/e1f5fe/0288d1?text=4'">
-                    <img src="5.png" class="sticker-img" alt="sticker" onerror="this.src='https://via.placeholder.com/50/e1f5fe/0288d1?text=5'">
-                    <img src="6.png" class="sticker-img" alt="sticker" onerror="this.src='https://via.placeholder.com/50/e1f5fe/0288d1?text=6'">
-                    <img src="7.png" class="sticker-img" alt="sticker" onerror="this.src='https://via.placeholder.com/50/e1f5fe/0288d1?text=7'">
-                    <img src="8.png" class="sticker-img" alt="sticker" onerror="this.src='https://via.placeholder.com/50/e1f5fe/0288d1?text=8'">
-                    <img src="9.png" class="sticker-img" alt="sticker" onerror="this.src='https://via.placeholder.com/50/e1f5fe/0288d1?text=9'">
-                    <img src="10.png" class="sticker-img" alt="sticker" onerror="this.src='https://via.placeholder.com/50/e1f5fe/0288d1?text=10'">
+                    <!-- Set 1 -->
+                    <img src="1.png" class="sticker-img"><img src="2.png" class="sticker-img"><img src="3.png" class="sticker-img"><img src="4.png" class="sticker-img"><img src="5.png" class="sticker-img"><img src="6.png" class="sticker-img"><img src="7.png" class="sticker-img"><img src="8.png" class="sticker-img"><img src="9.png" class="sticker-img"><img src="10.png" class="sticker-img">
+                    <!-- Set 2 -->
+                    <img src="3.png" class="sticker-img"><img src="1.png" class="sticker-img"><img src="6.png" class="sticker-img"><img src="8.png" class="sticker-img"><img src="2.png" class="sticker-img"><img src="10.png" class="sticker-img"><img src="4.png" class="sticker-img"><img src="9.png" class="sticker-img"><img src="5.png" class="sticker-img"><img src="7.png" class="sticker-img">
+                    <!-- Set 3 -->
+                    <img src="7.png" class="sticker-img"><img src="9.png" class="sticker-img"><img src="2.png" class="sticker-img"><img src="5.png" class="sticker-img"><img src="1.png" class="sticker-img"><img src="10.png" class="sticker-img"><img src="8.png" class="sticker-img"><img src="4.png" class="sticker-img"><img src="3.png" class="sticker-img"><img src="6.png" class="sticker-img">
                 </div>
             </div>
             
@@ -87,7 +84,7 @@
         </div>
     </div>
 
-    <!-- POPUP BẢNG LỜI KHAI CỦA ADMIN (BÍ MẬT) -->
+    <!-- POPUP BẢNG LỜI KHAI -->
     <div class="modal" id="history-modal">
         <div class="modal-content">
             <h2 style="color: #0288d1; margin-bottom: 15px; text-align: center;">⚖️ Biên bản lời khai</h2>
